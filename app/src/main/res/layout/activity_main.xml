@@ -12,13 +12,8 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/timeRemaining" />
-
-    <TextView
         android:text="Please choose your work schedule:"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView6"
         android:textSize="20sp"
@@ -36,7 +31,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/rb_default"
             android:textSize="18sp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:checked="true"
+            android:cursorVisible="true" />
 
         <RadioButton
             android:text="Swing Shift"
@@ -62,5 +59,25 @@
             android:textSize="18sp"
             android:layout_weight="1" />
     </RadioGroup>
+
+
+    <TextView
+        android:text="Please choose your sleep hours: "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="20sp"
+        android:textStyle="normal|bold|italic" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sb_sleepHours" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/pieChart"></com.github.mikephil.charting.charts.PieChart>
+
 
 </LinearLayout>
