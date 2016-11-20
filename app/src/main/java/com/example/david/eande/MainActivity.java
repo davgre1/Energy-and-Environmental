@@ -110,6 +110,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        RadioButton rbcustom = (RadioButton)findViewById(R.id.rb_custom);
+        rbcustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeRemaining = 8;
+
+                //Intent to go to custom activity
+                Intent intent = new Intent(MainActivity.this, AddCustomActivity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), ("Custom Shift"), LENGTH_SHORT).show();
+            }
+        });
+
         //Spinner sleep hour options
         sb_sleepHours.setMax(12);
         sb_sleepHours.setProgress(6);
