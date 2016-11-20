@@ -7,3 +7,13 @@
 /build
 /captures
 .externalNativeBuild
+
+# user specific files to ignore
+.idea/copyright/profiles_settings.xml
+.idea/encodings.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
+
+
+
