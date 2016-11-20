@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         pieChart = (PieChart)findViewById(R.id.pieChart);
         sb_sleepHours =(SeekBar) findViewById(R.id.sb_sleepHours);
 
+        pieChart.getDescription().setEnabled(false);
         pieChart.getLegend().setEnabled(false);
         pieChart.setRotationEnabled(false);
         pieChart.setUsePercentValues(true);
