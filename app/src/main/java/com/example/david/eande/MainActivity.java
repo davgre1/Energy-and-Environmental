@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public Integer timeRemaining = 8;
     final Integer time = 24;
     public Integer work = 8;
-    public Integer sleep = 0;
-    public Integer activities = 0;
+    public Integer sleep = 7;
 
     //Global Interfaces
     private PieChart pieChart;
@@ -40,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
     //Data
     private float[] yData = {};
-    private String[] xData = {"W", "S", "R"};
+    private String[] xData = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView textview = (TextView)findViewById(R.id.textView6);
+        textview.setText("Please choose your work schedule: " + work + " hrs");
+        TextView textview1 = (TextView)findViewById(R.id.textView);
+        textview1.setText("Please choose your sleep hours:  " + sleep + " hrs");
 
         pieChart = (PieChart)findViewById(R.id.pieChart);
         sb_sleepHours =(SeekBar) findViewById(R.id.sb_sleepHours);
@@ -67,14 +70,7 @@ public class MainActivity extends AppCompatActivity {
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-
-                int pos1 = e.toString().indexOf("(sum): ");
-                String employee = xData[pos1 + 1];
-
                 if (e == null) {return;}
-
-                Toast.makeText(MainActivity.this, employee,
-                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -97,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 timeRemaining = 8;
-                Toast.makeText(getApplicationContext(), ("swing" + activities), LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), ("swing" + work), LENGTH_SHORT).show();
             }
         });
 
@@ -106,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 timeRemaining = 8;
-                Toast.makeText(getApplicationContext(), ("graveyard" + activities), LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), ("graveyard" + work), LENGTH_SHORT).show();
             }
         });
 
@@ -131,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
-                //sleep = Integer.valueOf(progress);
-                Toast.makeText(getApplicationContext(), ("Sleep hours" + String.valueOf(progress)), LENGTH_SHORT).show();
+                sleep = Integer.valueOf(progress);
+                Toast.makeText(getApplicationContext(), ("Sleep hours" + sleep), LENGTH_SHORT).show();
             }
 
             @Override
@@ -147,25 +143,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    //Adds data to the pie chart
     private void addDataSet() {
-        ArrayList<PieEntry> yEntrys = new ArrayList<>(); //colors
-        ArrayList<String> xEntrys = new ArrayList<>(); //
-        yEntrys.add(new PieEntry(timeRemaining, 0));
-        yEntrys.add(new PieEntry(timeRemaining, 1));
+        ArrayList<PieEntry> yEntrys = new ArrayList<>(); //hour values
+        yEntrys.add(new PieEntry(work, 0));
+        yEntrys.add(new PieEntry(sleep, 1));
         yEntrys.add(new PieEntry(timeRemaining, 2));
 
-//        //adds input to the array
-//        for(int i = 0; i < yData.length; i++){
-//            yEntrys.add(new PieEntry(yData[i] , i));
-//        }
+        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
 
-        for(int i = 1; i < xData.length; i++){
-            xEntrys.add(xData[i]);
-        }
+        ArrayList<String> xEntrys = new ArrayList<String>(); //text value
+        xEntrys.add("Work");
+        xEntrys.add("Sleep");
+        xEntrys.add("Activities");
+
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
 
         //create the data set
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "");
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(14);
 
@@ -174,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
         colors.add(Color.parseColor("#00BFA5"));
         colors.add(Color.parseColor("#0D47A1"));
         colors.add(Color.parseColor("#E65100"));
-
         pieDataSet.setColors(colors);
 
         //add legend to chart
@@ -182,10 +176,6 @@ public class MainActivity extends AppCompatActivity {
         legend.setForm(Legend.LegendForm.CIRCLE);
         legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
 
-        //create pie data object
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
     }
 
 
