@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         rbdefault.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "default", LENGTH_SHORT);
+                activities = time - (work + sleep);
+                Toast toast = Toast.makeText(getApplicationContext(), ("default" + activities), LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         rbswing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "swimg", LENGTH_SHORT);
+                activities = time - (work + 5);
+                Toast toast = Toast.makeText(getApplicationContext(), ("swing" + activities), LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -47,13 +49,12 @@ public class MainActivity extends AppCompatActivity {
         rbgraveyard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "graveyard", LENGTH_SHORT);
+                activities = time - (work + 2);
+                Toast toast = Toast.makeText(getApplicationContext(), ("graveyard" + activities), LENGTH_SHORT);
                 toast.show();
             }
         });
-
-        TextView tr = (TextView) findViewById(R.id.timeRemaining);
-        tr.setText("Time remianing: " + activities);
+        
     }
 
 

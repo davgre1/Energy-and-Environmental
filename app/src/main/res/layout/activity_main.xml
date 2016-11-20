@@ -24,32 +24,43 @@
         android:textSize="20sp"
         android:textStyle="normal|bold|italic" />
 
-    <RadioButton
-        android:text="Default (9-5)"
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rb_default"
-        android:textSize="18sp" />
+        android:layout_height="168dp"
+        android:padding="0dp"
+        android:paddingBottom="0dp">
 
-    <RadioButton
-        android:text="Swing Shift"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rb_swing"
-        android:textSize="18sp" />
+        <RadioButton
+            android:text="Default (9-5)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_default"
+            android:textSize="18sp"
+            android:layout_weight="1" />
 
-    <RadioButton
-        android:text="Graveyard Shift"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rb_graveyard"
-        android:textSize="18sp" />
+        <RadioButton
+            android:text="Swing Shift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_swing"
+            android:textSize="18sp"
+            android:layout_weight="1" />
 
-    <RadioButton
-        android:text="Custom Shift"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rb_custom"
-        android:textSize="18sp" />
+        <RadioButton
+            android:text="Graveyard Shift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_graveyard"
+            android:textSize="18sp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Custom Shift"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb_custom"
+            android:textSize="18sp"
+            android:layout_weight="1" />
+    </RadioGroup>
 
 </LinearLayout>
